@@ -69,24 +69,75 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginTop="16dp">
 
-        <Button
-            android:id="@+id/btnViewLogs"
-            android:layout_width="0dp"
+        <!-- Primera fila de botones -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btn_view_logs"
-            android:layout_marginEnd="8dp" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
-        <Button
-            android:id="@+id/btnClearData"
-            android:layout_width="0dp"
+            <Button
+                android:id="@+id/btnViewLogs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_view_logs"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnClearData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_clear_data"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Segunda fila de botones para auditoría -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btn_clear_data"
-            android:layout_marginStart="8dp" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnAuditReport"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Reporte de Auditoría"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
+            <Button
+                android:id="@+id/btnExportLogs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Exportar Logs"
+                android:layout_marginStart="8dp"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
+        </LinearLayout>
+
+        <!-- Tercera fila de botones para autenticación -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAuthInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado de Autenticación"
+                style="@style/Widget.AppCompat.Button.Colored" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -65,6 +65,9 @@ dependencies {
     // Para encriptación y seguridad
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
     
+    // Para autenticación biométrica
+    implementation("androidx.biometric:biometric:1.1.0")
+    
     // Para trabajar con archivos y multimedia
     implementation("com.github.bumptech.glide:glide:4.16.0")
     
@@ -75,4 +78,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    
+    // Testing dependencies for security features
+    testImplementation("org.mockito:mockito-core:5.8.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.22")
+    testImplementation("androidx.test:core:1.6.1")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    
+    // Robolectric for Android unit testing
+    testImplementation("org.robolectric:robolectric:4.13")
+    testImplementation("androidx.test.ext:junit:1.2.1")
 }
