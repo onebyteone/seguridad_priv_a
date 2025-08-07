@@ -39,7 +39,7 @@
                 android:text="Cargando información de protección..."
                 android:textSize="14sp"
                 android:padding="12dp"
-                android:background="@android:color/darker_gray"
+                android:background="#232323"
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="16dp" />
 
@@ -58,7 +58,7 @@
                 android:text="Cargando logs..."
                 android:textSize="12sp"
                 android:padding="12dp"
-                android:background="@android:color/darker_gray"
+                android:background="#232323"
                 android:textColor="@android:color/white"
                 android:fontFamily="monospace" />
 
@@ -110,8 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Reporte de Auditoría"
-                android:layout_marginEnd="8dp"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+                android:layout_marginEnd="8dp" />
 
             <Button
                 android:id="@+id/btnExportLogs"
@@ -119,8 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Exportar Logs"
-                android:layout_marginStart="8dp"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+                android:layout_marginStart="8dp" />
 
         </LinearLayout>
 

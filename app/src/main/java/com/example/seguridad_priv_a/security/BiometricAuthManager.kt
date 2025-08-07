@@ -238,19 +238,40 @@ class BiometricAuthManager(private val context: Context) {
             }
         })
         
-        val cipher = getCipher()
-        val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Autenticación Requerida")
-            .setSubtitle("Use su huella dactilar o PIN/Pattern")
-            .setDescription("Confirme su identidad para acceder a información sensible")
-            .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_WEAK or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
-            .build()
+        // Verificar qué tipo de autenticación está disponible
+        val biometricManager = BiometricManager.from(context)
+        val strongBiometricAvailable = biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS
         
-        if (cipher != null) {
-            val cryptoObject = BiometricPrompt.CryptoObject(cipher)
-            biometricPrompt.authenticate(promptInfo, cryptoObject)
+        val promptInfo = if (strongBiometricAvailable) {
+            // Si hay biometría fuerte disponible, podemos usar criptografía
+            BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Autenticación Requerida")
+                .setSubtitle("Use su huella dactilar")
+                .setDescription("Confirme su identidad para acceder a información sensible")
+                .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                .setNegativeButtonText("Usar PIN/Pattern")
+                .build()
         } else {
-            // Autenticación sin crypto object como fallback
+            // Si solo hay biometría débil o credenciales del dispositivo, no usar criptografía
+            BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Autenticación Requerida")
+                .setSubtitle("Use su huella dactilar o PIN/Pattern")
+                .setDescription("Confirme su identidad para acceder a información sensible")
+                .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_WEAK or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+                .build()
+        }
+        
+        if (strongBiometricAvailable) {
+            // Solo usar CryptoObject con biometría fuerte
+            val cipher = getCipher()
+            if (cipher != null) {
+                val cryptoObject = BiometricPrompt.CryptoObject(cipher)
+                biometricPrompt.authenticate(promptInfo, cryptoObject)
+            } else {
+                biometricPrompt.authenticate(promptInfo)
+            }
+        } else {
+            // Para biometría débil o credenciales del dispositivo, no usar criptografía
             biometricPrompt.authenticate(promptInfo)
         }
     }
